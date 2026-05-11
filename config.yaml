@@ -2,7 +2,7 @@ model:
   default: google/gemini-2.0-flash-001
   provider: openrouter
   api_mode: chat_completions
-  max_tokens: 4096
+  max_tokens: 2048
 terminal:
   backend: local
   cwd: /data
@@ -29,7 +29,7 @@ session_reset:
 streaming:
   enabled: true
 agent:
-  max_turns: 60
+  max_turns: 20
   verbose: false
 skills:
   creation_nudge_interval: 15
@@ -38,7 +38,7 @@ platform_toolsets:
   - hermes-telegram
 display:
   compact: false
-  tool_progress: all
-  interim_assistant_messages: true
+  tool_progress: none
+  interim_assistant_messages: false
   show_reasoning: false
   streaming: true
