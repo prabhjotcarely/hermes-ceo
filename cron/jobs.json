@@ -3,8 +3,10 @@
     {
       "id": "98f698df497d",
       "name": "morning-brief",
-      "prompt": "You are the CEO of Carely. Morning scan — run this exactly:\n1. GET https://carely-backend-production.up.railway.app/admin/stats (header: x-carely-secret: carely-admin-6add43330d2313d8)\n2. Query Supabase for signups in last 24h: GET https://iaxcdasluigpwiydcxle.supabase.co/rest/v1/users?select=id,created_at&order=created_at.desc&limit=50 (header: apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlheGNkYXNsdWlncHdpeWRjeGxlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3Njk1NzEyNCwiZXhwIjoyMDkyNTMzMTI0fQ.6IjsYxYV5QEr4kW6TOHwysJ-8dfxk0oPenG0uuJDtVo)\n3. GET /admin/drafts pending approvals\n4. Send this to TJ via: POST https://api.telegram.org/bot8565527028:AAG7Xn148orD4CmmiMzeb1Xl5mf8gzG9pwI/sendMessage with chat_id 6941650038\n\nMessage format — 5 lines max:\n*8 AM — Carely CEO Brief*\nMRR: $X | Users: X | Trials: X\n+X signups last 24h\nX drafts waiting approval\nToday: [single most important action to take]\n\nBe brutally honest. Numbers only. No padding.",
-      "skills": ["carely-ceo"],
+      "prompt": "You are the CEO of Carely. Morning scan \u2014 run this exactly:\n1. GET https://carely-backend-production.up.railway.app/admin/stats (header: x-carely-secret: carely-admin-6add43330d2313d8)\n2. Query Supabase for signups in last 24h: GET https://iaxcdasluigpwiydcxle.supabase.co/rest/v1/users?select=id,created_at&order=created_at.desc&limit=50 (header: apikey: SUPABASE_KEY_PLACEHOLDER)\n3. GET /admin/drafts pending approvals\n4. Send this to TJ via: POST https://api.telegram.org/botHERMES_BOT_TOKEN_PLACEHOLDER/sendMessage with chat_id 6941650038\n\nMessage format \u2014 5 lines max:\n*8 AM \u2014 Carely CEO Brief*\nMRR: $X | Users: X | Trials: X\n+X signups last 24h\nX drafts waiting approval\nToday: [single most important action to take]\n\nBe brutally honest. Numbers only. No padding.",
+      "skills": [
+        "carely-ceo"
+      ],
       "skill": null,
       "model": null,
       "provider": null,
@@ -40,8 +42,10 @@
     {
       "id": "9d870e774a0d",
       "name": "eod-review",
-      "prompt": "You are the CEO of Carely. End of day review:\n1. GET https://carely-backend-production.up.railway.app/admin/stats (header: x-carely-secret: carely-admin-6add43330d2313d8)\n2. GET /admin/feed — what did agents do today?\n3. GET /admin/drafts — what's still pending?\n4. Send to TJ (chat 6941650038) AND Prabh (chat 8757842275) via bot 8565527028:AAG7Xn148orD4CmmiMzeb1Xl5mf8gzG9pwI\n\nMessage — 6 lines max:\n*8 PM — EOD*\nMRR: $X | Users: X (+X today)\nDid we move toward $1M today: YES/NO — [one reason]\nWhat failed: [specific agent or action]\nWhat changes tomorrow: [one directive]\nPrabh: [one specific task for tomorrow]\n\nBrutal. Honest. No fluff.",
-      "skills": ["carely-ceo"],
+      "prompt": "You are the CEO of Carely. End of day review:\n1. GET https://carely-backend-production.up.railway.app/admin/stats (header: x-carely-secret: carely-admin-6add43330d2313d8)\n2. GET /admin/feed \u2014 what did agents do today?\n3. GET /admin/drafts \u2014 what's still pending?\n4. Send to TJ (chat 6941650038) AND Prabh (chat 8757842275) via bot HERMES_BOT_TOKEN_PLACEHOLDER\n\nMessage \u2014 6 lines max:\n*8 PM \u2014 EOD*\nMRR: $X | Users: X (+X today)\nDid we move toward $1M today: YES/NO \u2014 [one reason]\nWhat failed: [specific agent or action]\nWhat changes tomorrow: [one directive]\nPrabh: [one specific task for tomorrow]\n\nBrutal. Honest. No fluff.",
+      "skills": [
+        "carely-ceo"
+      ],
       "skill": null,
       "model": null,
       "provider": null,
@@ -77,8 +81,10 @@
     {
       "id": "2c9880aa10ba",
       "name": "hourly-intel",
-      "prompt": "Silent CEO watchdog. Check:\n1. GET https://carely-backend-production.up.railway.app/admin/inbox (header: x-carely-secret: carely-admin-6add43330d2313d8)\n2. GET /health\nIF backend is down OR any inbox item is priority:urgent OR any trial expires in <3h with no nurture sequence started — send 1 alert to TJ via bot 8565527028:AAG7Xn148orD4CmmiMzeb1Xl5mf8gzG9pwI chat 6941650038.\nIF everything is fine — return empty, say nothing. Absolute silence unless something is wrong.",
-      "skills": ["carely-ceo"],
+      "prompt": "Silent CEO watchdog. Check:\n1. GET https://carely-backend-production.up.railway.app/admin/inbox (header: x-carely-secret: carely-admin-6add43330d2313d8)\n2. GET /health\nIF backend is down OR any inbox item is priority:urgent OR any trial expires in <3h with no nurture sequence started \u2014 send 1 alert to TJ via bot HERMES_BOT_TOKEN_PLACEHOLDER chat 6941650038.\nIF everything is fine \u2014 return empty, say nothing. Absolute silence unless something is wrong.",
+      "skills": [
+        "carely-ceo"
+      ],
       "skill": null,
       "model": null,
       "provider": null,
@@ -94,17 +100,17 @@
       "schedule_display": "Every hour",
       "repeat": {
         "times": null,
-        "completed": 53
+        "completed": 54
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T20:44:46.919024-07:00",
-      "next_run_at": "2026-05-11T15:00:00-07:00",
-      "last_run_at": "2026-05-11T14:00:22.097850-07:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-05-11T16:00:00-07:00",
+      "last_run_at": "2026-05-11T15:07:36.660056-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 402: Prompt tokens limit exceeded: 118462 > 70509. To increase, visit https://openrouter.ai/settings/keys and create a key with a higher monthly limit",
       "last_delivery_error": null,
       "deliver": "local",
       "origin": null,
@@ -114,8 +120,10 @@
     {
       "id": "a1b2c3d4e5f6",
       "name": "weekly-growth-audit",
-      "prompt": "Weekly CEO growth audit — every Sunday 9 AM PST:\n1. Pull full business state from /admin/stats\n2. Query Supabase for week-over-week user growth\n3. Check all agent performance: GET /admin/agent-stats\n4. Run deep analysis: which acquisition channel is converting best? Which agents are wasting tokens producing zero results?\n5. Make 3 specific directive changes to underperforming agents via POST /admin/directive\n6. Send full audit to TJ (6941650038) and Prabh (8757842275)\n\nFormat:\n*Sunday CEO Audit*\nWoW growth: +X users (+X%)\nMRR: $X (target pace: $X needed)\nTop performing agent: [name + why]\nKilled/adjusted: [what changed and why]\nNext week focus: [single priority]\n\nMake the directive changes FIRST, then report.",
-      "skills": ["carely-ceo"],
+      "prompt": "Weekly CEO growth audit \u2014 every Sunday 9 AM PST:\n1. Pull full business state from /admin/stats\n2. Query Supabase for week-over-week user growth\n3. Check all agent performance: GET /admin/agent-stats\n4. Run deep analysis: which acquisition channel is converting best? Which agents are wasting tokens producing zero results?\n5. Make 3 specific directive changes to underperforming agents via POST /admin/directive\n6. Send full audit to TJ (6941650038) and Prabh (8757842275)\n\nFormat:\n*Sunday CEO Audit*\nWoW growth: +X users (+X%)\nMRR: $X (target pace: $X needed)\nTop performing agent: [name + why]\nKilled/adjusted: [what changed and why]\nNext week focus: [single priority]\n\nMake the directive changes FIRST, then report.",
+      "skills": [
+        "carely-ceo"
+      ],
       "skill": null,
       "model": null,
       "provider": null,
@@ -149,5 +157,5 @@
       "workdir": null
     }
   ],
-  "updated_at": "2026-05-11T21:30:00.000000-07:00"
+  "updated_at": "2026-05-11T15:07:36.660280-07:00"
 }
