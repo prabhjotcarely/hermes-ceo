@@ -29,7 +29,7 @@ echo "[Hermes] carely-ceo skill installed with credentials"
 
 # Install cron jobs with real bot token injected
 mkdir -p /data/cron
-HERMES_TOKEN="${TELEGRAM_BOT_TOKEN}"
+HERMES_TOKEN="${TELEGRAM_TJ_HermesBOT_TOKEN}"
 sed \
   -e "s|HERMES_BOT_TOKEN_PLACEHOLDER|${HERMES_TOKEN}|g" \
   /opt/carely/cron/jobs.json > /data/cron/jobs.json
@@ -38,7 +38,7 @@ echo "[Hermes] cron jobs installed"
 # Write .env from Railway env vars
 cat > /data/.env << EOF
 OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
-TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+TELEGRAM_TJ_HermesBOT_TOKEN=${TELEGRAM_TJ_HermesBOT_TOKEN}
 TELEGRAM_ALLOWED_USERS=${TELEGRAM_ALLOWED_USERS:-6941650038,8757842275}
 TELEGRAM_HOME_CHANNEL=${TELEGRAM_HOME_CHANNEL:-6941650038}
 TELEGRAM_HOME_CHANNEL_NAME=${TELEGRAM_HOME_CHANNEL_NAME:-TJ}
