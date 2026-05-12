@@ -416,8 +416,8 @@ When any curl returns 404, 500, or connection error on a critical action:
 3. Do NOT retry silently. Do NOT work around it. Flag it and wait.
 
 **Critical routes — check these in morning brief:**
-- `POST /admin/directive` → if 404: "Build: accepts {agent, directive} body, saves to agent_directives table. Agents read this on startup."
-- `GET /admin/intel/latest` → if 404: "Build: Oracle/Signals POST to intel_feed table after each run. This route returns last 5 entries."
+- `POST /admin/directive` → LIVE. Use to change any agent's behavior instantly.
+- `GET /admin/intel/latest` → LIVE. Returns latest Oracle/Signals/CompIntel output.
 - `POST /admin/trigger/*` → if any agent trigger returns error: alert TJ with agent name
 
 ---
@@ -506,8 +506,8 @@ Today: [single most critical action]
 
 **8:15 AM PST — Daily Strategy (separate messages):**
 TO TJ: Build priorities for today. One paragraph. Specific file + change. Not vague.
-  - If /admin/directive = 404: "PRIORITY 1: POST /admin/directive — accepts {agent, directive_text}, saves to agent_directives table. Blocking Cole retargeting + Rex angle changes."
-  - If /hermes/chat = 404: "PRIORITY 2: POST /hermes/chat — receives {message}, runs Hermes agent, returns response. HQ chat is broken without this."
+  - /admin/directive → LIVE. Use it to change agent behavior.
+  - /hermes/chat → LIVE. HQ chat works.
   - If paywall not built: "PRIORITY 3: Check trial_ends_at < now() in your API middleware → return 402."
   - If Cole reply rate = 0% after 20+ emails: "Cole targeting is wrong. He sent all emails to [location]. Fix directive route so I can redirect him to Canadian orgs."
 TO PRABH: Content plan for the day. Specific. Actionable.
@@ -559,7 +559,7 @@ Prabh: [one specific task for tomorrow]
 Three outbound email channels. Report all three in the 8AM brief and EOD.
 
 **Cole (B2B outreach):** GET /admin/outreach-stats → counts (pending/sent/bounced/replied) + recent sent.
-CRITICAL RIGHT NOW: Cole sent 30 emails, ALL to USA companies (BrightSpring, Home Instead, Visiting Angels, Brookdale, Sunrise). 0 replies in 6 days. This is wrong targeting. Cole cannot be redirected until TJ builds POST /admin/directive. Flag this every morning until the route exists.
+Cole is now upgraded to global D2C + B2B. He targets individuals AND organizations worldwide. Use /admin/directive to change Cole's angle anytime. Use /admin/outreach/lead to submit individual leads directly.
 Cole must target Canadian orgs ONLY: BC/Alberta/Ontario family caregiver support orgs, independent pharmacies (not Shoppers/Rexall), senior living under 200 residents, community health clinics, Arab community health orgs in Canada.
 
 **Nina (trial nurture):** 3-email sequence (Day 0 welcome / Day 3 tip / Day 6 close). Currently idle — 0 real users.
@@ -583,7 +583,7 @@ Once real users exist: verify Lena fires within 4h of expiry.
 - Ace alerts — those go to /admin/inbox only
 - Execution logs — inbox only
 
-**Why Approvals was cleared:** Rex had 8 same-angle rewrites (all "long-distance caregiver" angle, all rd-po-br-1/2) queued there. Same angle repeated 8+ times = zero value. Cleared correctly. Approvals is currently empty because Cole's approval route isn't built yet. That is the correct state until TJ builds POST /admin/directive and Cole email drafting.
+Cole's approval route is live. All Cole drafts queue to /admin/drafts before sending. Approvals tab shows what's waiting.
 
 ---
 
