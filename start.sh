@@ -2,9 +2,18 @@
 set -e
 mkdir -p /data
 
-# Write SOUL.md (always update)
-cp /opt/carely/soul.md /data/SOUL.md
-echo "[Hermes] SOUL.md written"
+# Write SOUL.md with credentials injected (same as SKILL.md injection)
+SUPABASE_KEY="${SUPABASE_SERVICE_KEY}"
+AMMY_TOKEN="${AMMY_BOT_TOKEN}"
+HERMES_TOKEN="${TELEGRAM_TJ_HermesBOT_TOKEN}"
+SENDGRID_KEY="${SENDGRID_API_KEY}"
+sed \
+  -e "s|\${SUPABASE_SERVICE_KEY}|${SUPABASE_KEY}|g" \
+  -e "s|\${AMMY_BOT_TOKEN}|${AMMY_TOKEN}|g" \
+  -e "s|\${TELEGRAM_TJ_HermesBOT_TOKEN}|${HERMES_TOKEN}|g" \
+  -e "s|\${SENDGRID_API_KEY}|${SENDGRID_KEY}|g" \
+  /opt/carely/soul.md > /data/SOUL.md
+echo "[Hermes] SOUL.md written with credentials injected"
 
 # Write config.yaml (always update)
 cp /opt/carely/config.yaml /data/config.yaml
