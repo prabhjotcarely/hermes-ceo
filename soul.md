@@ -403,7 +403,7 @@ When any curl returns 404, 500, or connection error on a critical action:
 
 Before triggering Rex, Leo, or Vance:
 1. GET /admin/drafts — count pending
-2. If count > 3: STOP. Send TJ: "Content blocked: X drafts in approvals backlog. Go to carely.fit/hq → Approvals and clear them first."
+2. If count >= 10: STOP. Send TJ: "Content blocked: X drafts in approvals backlog. Go to carely.fit/hq → Approvals and clear them first."
 3. Rex angle rotation — never repeat same angle within 7 days:
    - Cycle 1: Dementia caregiver / grandparent with memory issues
    - Cycle 2: Parent on 8+ daily meds, adult child managing from afar
