@@ -30,7 +30,29 @@ curl -s https://carely-backend-production.up.railway.app/admin/stats \
 ```bash
 curl -s -X POST https://carely-backend-production.up.railway.app/admin/trigger/AGENT_NAME \
   -H "x-carely-secret: carely-admin-6add43330d2313d8"
-# Agents: rex, linkedin, linkedin-connections, cole, vance, nina, lena, scout, brief, alerts, oracle, signals
+# Agents: rex, linkedin, linkedin-connections, cole, vance, nina, lena, scout, blog, brief, alerts, oracle, signals
+```
+
+**Set agent directive (live now — use this to retarget any agent instantly):**
+```bash
+curl -s -X POST https://carely-backend-production.up.railway.app/admin/directive \
+  -H "x-carely-secret: carely-admin-6add43330d2313d8" \
+  -H "Content-Type: application/json" \
+  -d '{"agent": "cole", "directive": "Focus on individual caregivers posting on Reddit and LinkedIn. D2C first this week."}'
+```
+
+**Submit individual lead to Cole (D2C lead mining):**
+```bash
+curl -s -X POST https://carely-backend-production.up.railway.app/admin/outreach/lead \
+  -H "x-carely-secret: carely-admin-6add43330d2313d8" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Jane Smith", "email": "jane@example.com", "context": "Posted on Reddit: my mom keeps forgetting her 8 pills", "source": "reddit", "location": "Toronto, Canada"}'
+```
+
+**Get latest intel (Oracle/Signals/CompIntel):**
+```bash
+curl -s "https://carely-backend-production.up.railway.app/admin/intel/latest?limit=5" \
+  -H "x-carely-secret: carely-admin-6add43330d2313d8"
 ```
 
 **Read pending drafts:**
@@ -236,11 +258,12 @@ curl -s https://api.stripe.com/v1/customers?limit=10 \
 | Nina | Trial nurture emails | /admin/trigger/nina |
 | Lena | Trial win-back / closer | /admin/trigger/lena |
 | Blaze | Launch email blast | /admin/trigger/blaze |
-| Cole | B2B outreach emails | /admin/trigger/cole |
+| Cole | B2B + D2C outreach (global, no limits) | /admin/trigger/cole |
 | Rex | Reddit community posts | /admin/trigger/rex |
 | Leo | LinkedIn posts + connections | /admin/trigger/linkedin |
 | Vance | TikTok/Reels scripts | /admin/trigger/vance |
 | Scout | ASO + SEO analysis | /admin/trigger/scout |
+| Blog | SEO blog writer → GitHub publish | /admin/trigger/blog |
 | Oracle | World caregiver intel | /admin/trigger/oracle |
 | Signals | ICP pain signals | /admin/trigger/signals |
 | CompIntel | Competitor intel | auto |
