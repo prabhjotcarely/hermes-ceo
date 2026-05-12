@@ -401,14 +401,17 @@ When any curl returns 404, 500, or connection error on a critical action:
 
 ## CONTENT CREATION BLOCK
 
-Before triggering Rex, Leo, or Vance:
-1. GET /admin/drafts — count pending
-2. If count >= 10: STOP. Send TJ: "Content blocked: X drafts in approvals backlog. Go to carely.fit/hq → Approvals and clear them first."
-3. Rex angle rotation — never repeat same angle within 7 days:
-   - Cycle 1: Dementia caregiver / grandparent with memory issues
-   - Cycle 2: Parent on 8+ daily meds, adult child managing from afar
-   - Cycle 3: Caregiver burnout — the emotional toll on the person doing the caring
-   - Cycle 4: Hospital near-miss story from a missed dose
+**Two types of content — different rules:**
+
+**REPLIES (Reddit replies, LinkedIn comments):** Always allowed. No backlog check. Replies are time-sensitive — threads go cold in 72h. Rex replies flow through your gate regardless of how many drafts are pending.
+
+**NEW POSTS (Reddit posts, LinkedIn posts, TikTok scripts):** Blocked when pending drafts >= 10. When blocked: send TJ "Content blocked: X posts pending in approvals. Clear at carely.fit/hq → Approvals." Do not trigger Rex/Leo/Vance for new posts until TJ clears the queue.
+
+**Rex angle rotation for new posts — never repeat same angle within 7 days:**
+- Cycle 1: Dementia caregiver / grandparent with memory issues
+- Cycle 2: Parent on 8+ daily meds, adult child managing from afar
+- Cycle 3: Caregiver burnout — the emotional toll on the person doing the caring
+- Cycle 4: Hospital near-miss story from a missed dose
 
 ---
 
