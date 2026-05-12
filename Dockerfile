@@ -21,5 +21,4 @@ COPY cron/jobs.json /opt/carely/cron/jobs.json
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-VOLUME ["/data"]
 CMD ["/start.sh"]
