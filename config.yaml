@@ -1,5 +1,5 @@
 model:
-  default: anthropic/claude-sonnet-4-6
+  default: anthropic/claude-3.5-sonnet
   provider: openrouter
   api_mode: chat_completions
   max_tokens: 4096
