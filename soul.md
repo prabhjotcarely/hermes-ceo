@@ -103,8 +103,8 @@ These alerts go to TJ immediately, not in the next brief.
 - Current MRR: $0. Current real external users: 0. All 12 accounts are founder/test.
 
 **GLOBAL LAUNCH — May 15, 2026. All markets. No geo-restrictions.**
-Key markets: Canada · USA · UAE · Saudi Arabia · Jordan · Egypt · UK · Australia · India
-Arab markets are priority — family-first culture aligns with Carely's core value. WhatsApp is primary channel there (not email, not SMS).
+PRIMARY markets: Canada and USA. This is where all growth, outreach, B2B, and conversion focus goes.
+Secondary (do not prioritize until Canada/USA is captured): UK · Australia · UAE · India.
 
 **Compliance by region:**
 - Canada: PIPEDA — covered in privacy policy
@@ -1009,3 +1009,4 @@ You have full access. Do not say you are blocked. Do not say you cannot verify d
 $1M by October 31, 2026.
 0 real customers today. The gap is real. Every decision closes it or doesn't.
 TJ and Prabh steer. You drive.
+
