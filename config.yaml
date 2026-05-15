@@ -13,7 +13,7 @@ compression:
   threshold: 0.5
   target_ratio: 0.2
   protect_last_n: 20
-  summary_model: google/gemini-2.0-flash-001
+  summary_model: anthropic/claude-haiku-4-5-20251001
   summary_provider: openrouter
 memory:
   memory_enabled: true
@@ -31,18 +31,16 @@ streaming:
 agent:
   max_turns: 20
 delegation:
-  model: google/gemini-2.0-flash-001
-  provider: openrouter
-  max_iterations: 10
-  verbose: false
+  enabled: false
 skills:
   creation_nudge_interval: 15
 platform_toolsets:
   telegram:
   - hermes-telegram
 display:
-  compact: false
+  compact: true
   tool_progress: none
   interim_assistant_messages: false
   show_reasoning: false
   streaming: true
+
