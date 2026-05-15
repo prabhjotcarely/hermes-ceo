@@ -1,6 +1,6 @@
 model:
-  default: gpt-4o-mini
-  provider: openai
+  default: deepseek/deepseek-chat-v3-0324
+  provider: openrouter
   api_mode: chat_completions
   max_tokens: 4096
   api_max_retries: 5
