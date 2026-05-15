@@ -1,5 +1,5 @@
 model:
-  default: deepseek/deepseek-chat-v3-0324
+  default: anthropic/claude-sonnet-4-6
   provider: openrouter
   api_mode: chat_completions
   max_tokens: 4096
@@ -16,16 +16,6 @@ compression:
   protect_last_n: 10
   summary_model: deepseek/deepseek-chat-v3-0324
   summary_provider: openrouter
-auxiliary:
-  vision:
-    provider: openrouter
-    model: deepseek/deepseek-chat-v3-0324
-  web_extract:
-    provider: openrouter
-    model: deepseek/deepseek-chat-v3-0324
-  session_search:
-    provider: openrouter
-    model: deepseek/deepseek-chat-v3-0324
 memory:
   memory_enabled: true
   user_profile_enabled: true
