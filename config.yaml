@@ -10,7 +10,22 @@ terminal:
   timeout: 120
   lifetime_seconds: 300
 compression:
-  enabled: false
+  enabled: true
+  threshold: 0.7
+  target_ratio: 0.3
+  protect_last_n: 10
+  summary_model: deepseek/deepseek-chat-v3-0324
+  summary_provider: openrouter
+auxiliary:
+  vision:
+    provider: openrouter
+    model: deepseek/deepseek-chat-v3-0324
+  web_extract:
+    provider: openrouter
+    model: deepseek/deepseek-chat-v3-0324
+  session_search:
+    provider: openrouter
+    model: deepseek/deepseek-chat-v3-0324
 memory:
   memory_enabled: true
   user_profile_enabled: true
@@ -27,7 +42,10 @@ streaming:
 agent:
   max_turns: 20
 delegation:
-  enabled: false
+  model: deepseek/deepseek-chat-v3-0324
+  provider: openrouter
+  max_iterations: 10
+  verbose: false
 skills:
   creation_nudge_interval: 15
 platform_toolsets:
