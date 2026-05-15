@@ -1,1 +1,52 @@
+model:
+  default: anthropic/claude-sonnet-4-6
+  provider: openrouter
+  api_mode: chat_completions
+  max_tokens: 4096
+  rate_limit:
+    requests_per_minute: 20
+    retry_delay_seconds: 5
+terminal:
+  backend: local
+  cwd: /data
+  timeout: 120
+  lifetime_seconds: 300
+compression:
+  enabled: true
+  threshold: 0.5
+  target_ratio: 0.2
+  protect_last_n: 20
+  summary_model: google/gemini-2.0-flash-001
+  summary_provider: openrouter
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 2200
+  user_char_limit: 1375
+  nudge_interval: 20
+  flush_min_turns: 10
+session_reset:
+  mode: both
+  idle_minutes: 1440
+  at_hour: 4
+streaming:
+  enabled: true
+agent:
+  max_turns: 20
+delegation:
+  model: google/gemini-2.0-flash-001
+  provider: openrouter
+  max_iterations: 10
+  verbose: false
+skills:
+  creation_nudge_interval: 15
+platform_toolsets:
+  telegram:
+  - hermes-telegram
+display:
+  compact: false
+  tool_progress: none
+  interim_assistant_messages: false
+  show_reasoning: false
+  streaming: true
 
