@@ -1,5 +1,5 @@
 model:
-  default: anthropic/claude-3.5-sonnet
+  default: deepseek/deepseek-chat-v3-0324
   provider: openrouter
   api_mode: chat_completions
   max_tokens: 4096
