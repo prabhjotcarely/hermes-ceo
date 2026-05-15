@@ -3,9 +3,7 @@ model:
   provider: openrouter
   api_mode: chat_completions
   max_tokens: 4096
-  rate_limit:
-    requests_per_minute: 20
-    retry_delay_seconds: 5
+  api_max_retries: 5
 terminal:
   backend: local
   cwd: /data
@@ -49,4 +47,3 @@ display:
   interim_assistant_messages: false
   show_reasoning: false
   streaming: true
-
