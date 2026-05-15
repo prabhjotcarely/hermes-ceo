@@ -1,5 +1,5 @@
 model:
-  default: anthropic/claude-sonnet-4-6
+  default: google/gemini-2.0-flash-001
   provider: openrouter
   api_mode: chat_completions
   max_tokens: 4096
@@ -32,7 +32,7 @@ streaming:
 agent:
   max_turns: 20
 delegation:
-  model: deepseek/deepseek-chat-v3-0324
+  model: anthropic/claude-sonnet-4-6
   provider: openrouter
   max_iterations: 10
   verbose: false
