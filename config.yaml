@@ -1,9 +1,9 @@
 model:
-  default: google/gemini-2.0-flash-001
+  default: deepseek/deepseek-chat-v3-0324
   provider: openrouter
   api_mode: chat_completions
   max_tokens: 4096
-  api_max_retries: 3
+  api_max_retries: 1
 terminal:
   backend: local
   cwd: /data
@@ -46,4 +46,4 @@ display:
   tool_progress: none
   interim_assistant_messages: false
   show_reasoning: false
-  streaming: true
+  streaming: false
