@@ -2,6 +2,10 @@
 set -e
 mkdir -p /data
 
+# Clear stale Hermes session state — auth.json persists old model/provider selections
+rm -f /data/auth.json
+echo "[Hermes] Cleared stale session state"
+
 # Write SOUL.md with credentials injected
 sed \
   -e "s|\${SUPABASE_SERVICE_KEY}|${SUPABASE_SERVICE_KEY}|g" \
@@ -67,6 +71,7 @@ display:
   streaming: false
 YAML
 echo "[Hermes] config.yaml written (model: $ACTIVE_MODEL)"
+echo "[Hermes] config.yaml content verify: $(grep 'default:' /data/config.yaml)"
 
 # Install carely-ceo skill with real credentials injected
 mkdir -p /data/skills/carely-ceo
