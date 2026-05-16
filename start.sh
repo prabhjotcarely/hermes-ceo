@@ -2,45 +2,87 @@
 set -e
 mkdir -p /data
 
-# Write SOUL.md with credentials injected (same as SKILL.md injection)
-SUPABASE_KEY="${SUPABASE_SERVICE_KEY}"
-AMMY_TOKEN="${AMMY_BOT_TOKEN}"
-HERMES_TOKEN="${TELEGRAM_TJ_HermesBOT_TOKEN}"
-SENDGRID_KEY="${SENDGRID_API_KEY}"
+# Write SOUL.md with credentials injected
 sed \
-  -e "s|\${SUPABASE_SERVICE_KEY}|${SUPABASE_KEY}|g" \
-  -e "s|\${AMMY_BOT_TOKEN}|${AMMY_TOKEN}|g" \
-  -e "s|\${TELEGRAM_TJ_HermesBOT_TOKEN}|${HERMES_TOKEN}|g" \
-  -e "s|\${SENDGRID_API_KEY}|${SENDGRID_KEY}|g" \
+  -e "s|\${SUPABASE_SERVICE_KEY}|${SUPABASE_SERVICE_KEY}|g" \
+  -e "s|\${AMMY_BOT_TOKEN}|${AMMY_BOT_TOKEN}|g" \
+  -e "s|\${TELEGRAM_TJ_HermesBOT_TOKEN}|${TELEGRAM_TJ_HermesBOT_TOKEN}|g" \
+  -e "s|\${SENDGRID_API_KEY}|${SENDGRID_API_KEY}|g" \
   /opt/carely/soul.md > /data/SOUL.md
 echo "[Hermes] SOUL.md written with credentials injected"
 
-# Write config.yaml (always update)
-cp /opt/carely/config.yaml /data/config.yaml
-echo "[Hermes] config.yaml written"
+# Generate config.yaml dynamically -- HERMES_DEFAULT_MODEL overrides without Docker rebuild
+ACTIVE_MODEL="${HERMES_DEFAULT_MODEL:-deepseek/deepseek-chat-v3-0324}"
+echo "[Hermes] Using model: $ACTIVE_MODEL"
+
+cat > /data/config.yaml << YAML
+model:
+  default: $ACTIVE_MODEL
+  provider: openrouter
+  api_mode: chat_completions
+  max_tokens: 4096
+  api_max_retries: 1
+terminal:
+  backend: local
+  cwd: /data
+  timeout: 120
+  lifetime_seconds: 300
+compression:
+  enabled: true
+  threshold: 0.7
+  target_ratio: 0.3
+  protect_last_n: 10
+  summary_model: $ACTIVE_MODEL
+  summary_provider: openrouter
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 2200
+  user_char_limit: 1375
+  nudge_interval: 50
+  flush_min_turns: 30
+session_reset:
+  mode: both
+  idle_minutes: 1440
+  at_hour: 4
+streaming:
+  enabled: false
+agent:
+  max_turns: 20
+delegation:
+  model: anthropic/claude-sonnet-4-6
+  provider: openrouter
+  max_iterations: 10
+  verbose: false
+skills:
+  creation_nudge_interval: 15
+platform_toolsets:
+  telegram:
+  - hermes-telegram
+display:
+  compact: false
+  tool_progress: none
+  interim_assistant_messages: false
+  show_reasoning: false
+  streaming: false
+YAML
+echo "[Hermes] config.yaml written (model: $ACTIVE_MODEL)"
 
 # Install carely-ceo skill with real credentials injected
 mkdir -p /data/skills/carely-ceo
-SUPABASE_KEY="${SUPABASE_SERVICE_KEY}"
-AMMY_TOKEN="${AMMY_BOT_TOKEN:-${AMMY_BOT_TOKEN}}"
-GITHUB_TOK="${GITHUB_TOKEN}"
-STRIPE_KEY="${STRIPE_SECRET_KEY}"
-SENDGRID_KEY="${SENDGRID_API_KEY}"
-
 sed \
-  -e "s|\${SUPABASE_SERVICE_KEY}|${SUPABASE_KEY}|g" \
-  -e "s|\${AMMY_BOT_TOKEN}|${AMMY_TOKEN}|g" \
-  -e "s|\${GITHUB_TOKEN}|${GITHUB_TOK}|g" \
-  -e "s|\${STRIPE_SECRET_KEY}|${STRIPE_KEY}|g" \
-  -e "s|\${SENDGRID_API_KEY}|${SENDGRID_KEY}|g" \
+  -e "s|\${SUPABASE_SERVICE_KEY}|${SUPABASE_SERVICE_KEY}|g" \
+  -e "s|\${AMMY_BOT_TOKEN}|${AMMY_BOT_TOKEN}|g" \
+  -e "s|\${GITHUB_TOKEN}|${GITHUB_TOKEN}|g" \
+  -e "s|\${STRIPE_SECRET_KEY}|${STRIPE_SECRET_KEY}|g" \
+  -e "s|\${SENDGRID_API_KEY}|${SENDGRID_API_KEY}|g" \
   /opt/carely/skills/carely-ceo/SKILL.md > /data/skills/carely-ceo/SKILL.md
 echo "[Hermes] carely-ceo skill installed with credentials"
 
 # Install cron jobs with real bot token injected
 mkdir -p /data/cron
-HERMES_TOKEN="${TELEGRAM_TJ_HermesBOT_TOKEN}"
 sed \
-  -e "s|HERMES_BOT_TOKEN_PLACEHOLDER|${HERMES_TOKEN}|g" \
+  -e "s|HERMES_BOT_TOKEN_PLACEHOLDER|${TELEGRAM_TJ_HermesBOT_TOKEN}|g" \
   /opt/carely/cron/jobs.json > /data/cron/jobs.json
 echo "[Hermes] cron jobs installed"
 
